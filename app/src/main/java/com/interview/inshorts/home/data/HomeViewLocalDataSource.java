@@ -2,11 +2,12 @@ package com.interview.inshorts.home.data;
 
 import java.util.List;
 import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
+
+import android.util.Log;
+
+import com.interview.inshorts.base.TaskManager;
 
 public class HomeViewLocalDataSource implements HomeViewDataSource<List<TrendingMovies>, List<NowPlayingMovies>> {
 
@@ -36,34 +37,27 @@ public class HomeViewLocalDataSource implements HomeViewDataSource<List<Trending
         return nowPlayingObservable;
     }
 
-    @Override // fixme move to bg thread
+    @Override
     public void cacheTrendingMovies(List<TrendingMovies> response) { // subsequent call
-        Single.fromCallable(() -> {
+        Log.d("app", "starting cacheTrendingMovies");
+
+        TaskManager.getInstance().doInBackground(() -> {
             mTrendingDao.deleteAllMovies();
-            mTrendingDao.insertMovies(response);
-            return null;
-        })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()); // fixme check if this can be removed
+            List<Long> longs = mTrendingDao.insertMovies(response);
+            Log.d("app", "inserted longs: " + longs);
+        }, null);
         trendingObservable.onNext(response);
-//        List<MovieApiConfig> apiResults = response.getResults();
-//        List<TrendingMovies> trendingMovies = convertApiConfigToTrendingConfig(apiResults);
-//        mTrendingDao.insertMovies(trendingMovies);
     }
 
-    @Override // fixme move to bg thread
+    @Override
     public void cacheNowPlayingMovies(List<NowPlayingMovies> response) { // subsequent call
-        Single.fromCallable(() -> {
+        Log.d("app", "starting cacheNowPlayingMovies");
+        TaskManager.getInstance().doInBackground(() -> {
             mNowPlayingDao.deleteAllMovies();
-            mNowPlayingDao.insertMovies(response);
-            return null;
-        })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+            List<Long> longs = mNowPlayingDao.insertMovies(response);
+            Log.d("app", "inserted longs: " + longs);
+        }, null);
         nowPlayingObservable.onNext(response);
-//        List<MovieApiConfig> apiResults = response.getResults();
-//        List<NowPlayingMovies> nowPlayingMovies = convertApiConfigToNowPlayingConfig(apiResults);
-//        mNowPlayingDao.insertMovies(nowPlayingMovies);
     }
 
     @Override

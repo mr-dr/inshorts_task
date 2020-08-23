@@ -5,18 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.interview.inshorts.AppController;
 import com.interview.inshorts.R;
 import com.interview.inshorts.base.BaseActivity;
-import com.interview.inshorts.base.data.MoviesLocalDatabase;
 import com.interview.inshorts.base.views.MovieListView;
 import com.interview.inshorts.base.vmFactory.HomeVmFactory;
 import com.interview.inshorts.bookmarks.BookmarksActivity;
-import com.interview.inshorts.home.data.HomeViewLocalDataSource;
-import com.interview.inshorts.home.data.HomeViewRemoteDataSource;
 import com.interview.inshorts.home.vm.HomeViewModel;
 import com.interview.inshorts.search.SearchActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.util.Log;
+
+import javax.inject.Inject;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -24,12 +24,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private View mBookmarksIcon;
     private MovieListView mTrendingMovies;
     private MovieListView mNowPlayingMovies;
-    private HomeViewModel mViewModel; // fixme inject via dagger
+    @Inject HomeVmFactory homeVmFactory;
+    private HomeViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        AppController.getInstance().getApplicationComponent().inject(this);
         init();
     }
 
@@ -41,10 +43,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initVm() {
-        MoviesLocalDatabase database = MoviesLocalDatabase.getInstance(this);
-        HomeVmFactory homeVmFactory = new HomeVmFactory(new HomeViewLocalDataSource(
-                database.trendingMoviesDao(), database.nowPlayingMoviesDao()),
-                new HomeViewRemoteDataSource());
         mViewModel = new ViewModelProvider(this, homeVmFactory).get(HomeViewModel.class);
     }
 

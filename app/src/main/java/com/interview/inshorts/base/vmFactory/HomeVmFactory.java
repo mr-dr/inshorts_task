@@ -1,25 +1,27 @@
 package com.interview.inshorts.base.vmFactory;
 
+import com.interview.inshorts.AppController;
 import com.interview.inshorts.home.data.HomeViewLocalDataSource;
 import com.interview.inshorts.home.data.HomeViewRemoteDataSource;
 import com.interview.inshorts.home.vm.HomeViewModel;
+
+import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 public class HomeVmFactory implements ViewModelProvider.Factory {
-    private HomeViewLocalDataSource mLocalDataSource;
-    private HomeViewRemoteDataSource mRemoteDataSource;
+    @Inject HomeViewLocalDataSource mLocalDataSource;
+    @Inject HomeViewRemoteDataSource mRemoteDataSource;
 
-    public HomeVmFactory(HomeViewLocalDataSource localDataSource, HomeViewRemoteDataSource remoteDataSource) {
-        mLocalDataSource = localDataSource;
-        mRemoteDataSource = remoteDataSource;
+    public HomeVmFactory() {
+        AppController.getInstance().getApplicationComponent().inject(this);
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new HomeViewModel(mLocalDataSource, mRemoteDataSource);
+        return (T) new HomeViewModel();
     }
 }

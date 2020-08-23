@@ -7,20 +7,22 @@ import io.reactivex.subjects.Subject;
 
 import android.util.Log;
 
+import com.interview.inshorts.AppController;
 import com.interview.inshorts.base.TaskManager;
+
+import javax.inject.Inject;
 
 public class HomeViewLocalDataSource implements HomeViewDataSource<List<TrendingMovies>, List<NowPlayingMovies>> {
 
-    private final TrendingMoviesDao mTrendingDao;
-    private final NowPlayingMoviesDao mNowPlayingDao;
+    @Inject TrendingMoviesDao mTrendingDao;
+    @Inject NowPlayingMoviesDao mNowPlayingDao;
     private final Subject<List<TrendingMovies>> trendingObservable;
     private final Subject<List<NowPlayingMovies>> nowPlayingObservable;
 
 
-    public HomeViewLocalDataSource(
-            TrendingMoviesDao trendingDao, NowPlayingMoviesDao nowPlayingDao) {
-        mTrendingDao = trendingDao;
-        mNowPlayingDao = nowPlayingDao;
+    public HomeViewLocalDataSource() {
+        // fixme Appcontroller should only be called from android components
+        AppController.getInstance().getApplicationComponent().inject(this);
         trendingObservable = PublishSubject.create();
         nowPlayingObservable = PublishSubject.create();
     }

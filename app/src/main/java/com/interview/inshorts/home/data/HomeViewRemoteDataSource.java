@@ -14,7 +14,6 @@ import android.util.Log;
 
 public class HomeViewRemoteDataSource implements HomeViewDataSource<TrendingResponse, NowPlayingResponse> {
 
-//    Observable<TrendingResponse> trendingMoviesObservable;
     private Subject<TrendingResponse> trendingMoviesObservable;
     private Subject<NowPlayingResponse> nowPlayingMoviesObservable;
 

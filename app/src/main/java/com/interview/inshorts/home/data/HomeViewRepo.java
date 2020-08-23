@@ -1,29 +1,29 @@
 package com.interview.inshorts.home.data;
 
+import com.interview.inshorts.AppController;
 import com.interview.inshorts.base.MovieApiConfig;
 import com.interview.inshorts.home.models.NowPlayingResponse;
 import com.interview.inshorts.home.models.TrendingResponse;
 
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class HomeViewRepo implements HomeViewDataSource<List<TrendingMovies>, List<NowPlayingMovies>> {
 
-    private final HomeViewLocalDataSource mLocalDataSource;
-    private final HomeViewRemoteDataSource mRemoteDataSource;
+    @Inject HomeViewLocalDataSource mLocalDataSource;
+    @Inject HomeViewRemoteDataSource mRemoteDataSource;
 
-    public HomeViewRepo(HomeViewLocalDataSource localData, HomeViewRemoteDataSource remoteData) {
-        mLocalDataSource = localData;
-        mRemoteDataSource = remoteData;
+    public HomeViewRepo() {
+        // fixme Appcontroller should only be called from android components
+        AppController.getInstance().getApplicationComponent().inject(this);
         subscribeLocalDataSourceWithRemote();
     }
 

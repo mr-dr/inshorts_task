@@ -2,18 +2,12 @@ package com.interview.inshorts.home.vm;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
+import com.interview.inshorts.AppController;
 import com.interview.inshorts.home.data.HomeViewDataSource;
-import com.interview.inshorts.home.data.HomeViewLocalDataSource;
-import com.interview.inshorts.home.data.HomeViewRemoteDataSource;
-import com.interview.inshorts.home.data.HomeViewRepo;
 import com.interview.inshorts.home.data.NowPlayingMovies;
 import com.interview.inshorts.home.data.TrendingMovies;
-import com.interview.inshorts.home.models.NowPlayingResponse;
-import com.interview.inshorts.home.models.TrendingResponse;
-
 import java.util.List;
-
+import javax.inject.Inject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -24,12 +18,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel extends ViewModel {
 
-    private HomeViewDataSource repo;
+    @Inject HomeViewDataSource<List<TrendingMovies>, List<NowPlayingMovies>> repo;
     private MutableLiveData<List<TrendingMovies>> trendingLiveData;
     private MutableLiveData<List<NowPlayingMovies>> nowPlayingLiveData;
 
-    public HomeViewModel(HomeViewLocalDataSource localData, HomeViewRemoteDataSource remoteData) {
-        repo = new HomeViewRepo(localData, remoteData);
+    public HomeViewModel() {
+        AppController.getInstance().getApplicationComponent().inject(this);
         trendingLiveData = new MutableLiveData<>();
         nowPlayingLiveData = new MutableLiveData<>();
         initDataListeners();

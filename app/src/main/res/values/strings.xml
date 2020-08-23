@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">My Movies</string>
+    <string name="search_bar_text">Search for a movie...</string>
+</resources>

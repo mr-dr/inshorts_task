@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.activity.HomeActivity">
+
+    <com.interview.inshorts.base.views.BaseTextView
+        android:id="@+id/search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        android:padding="@dimen/standard_padding"
+        android:text="@string/search_bar_text"
+        app:olSheet="true"
+        app:olSheetCornerRadius="4dp"
+        app:olSheetStrokeColor="@color/hint"
+        app:olSheetStrokeWidth="1dp"
+        android:textColor="@color/hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bookmark_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bookmark_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/standard_margin"
+        app:srcCompat="@drawable/bookmarks"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/search_bar" />
+
+    <com.interview.inshorts.base.views.MovieListView
+        android:id="@+id/trending_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Trending Now!"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        tools:background="#440044"
+        android:minHeight="50dp"
+        android:maxHeight="50dp"/>
+
+    <com.interview.inshorts.base.views.MovieListView
+        android:id="@+id/now_playing_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Trending Now!"
+        app:layout_constraintTop_toBottomOf="@id/trending_view"
+        tools:background="@color/colorPrimary"
+        android:minHeight="50dp"
+        android:maxHeight="50dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

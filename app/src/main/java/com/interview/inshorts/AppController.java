@@ -6,6 +6,7 @@ import com.interview.inshorts.di.ApplicationComponent;
 import com.interview.inshorts.di.ApplicationModule;
 import com.interview.inshorts.di.DaggerApplicationComponent;
 import com.interview.inshorts.di.RoomModule;
+import com.interview.inshorts.di.UiModule;
 
 public class AppController extends Application {
     private static AppController INSTANCE;
@@ -26,6 +27,7 @@ public class AppController extends Application {
         appComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .roomModule(new RoomModule(this))
+                .uiModule(new UiModule(this))
                 .build();
     }
 }

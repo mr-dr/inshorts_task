@@ -2,6 +2,7 @@ package com.interview.inshorts.di;
 
 import android.app.Application;
 
+import com.interview.inshorts.base.views.MovieListView;
 import com.interview.inshorts.base.vmFactory.HomeVmFactory;
 import com.interview.inshorts.bookmarks.BookmarksActivity;
 import com.interview.inshorts.home.activity.HomeActivity;
@@ -16,7 +17,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {ApplicationModule.class, RoomModule.class})
+@Component(modules = {ApplicationModule.class, RoomModule.class, UiModule.class})
 public interface ApplicationComponent {
     void inject(HomeActivity homeActivity);
     void inject(HomeViewLocalDataSource localDataSource);
@@ -24,8 +25,12 @@ public interface ApplicationComponent {
     void inject(HomeViewRepo homeViewRepo);
     void inject(HomeViewModel homeViewModel);
     void inject(HomeVmFactory homeVmFactory);
+    void inject(MovieListView movieListView);
+
     void inject(SearchActivity searchActivity);
+
     void inject(BookmarksActivity bookmarksActivity);
+
 //    void inject(DetailsActivity detailsActivity);
 
     Application application();

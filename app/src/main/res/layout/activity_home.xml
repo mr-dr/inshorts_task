@@ -13,6 +13,7 @@
         android:layout_margin="@dimen/standard_margin"
         android:padding="@dimen/standard_padding"
         android:text="@string/search_bar_text"
+        android:textSize="@dimen/text_size_medium"
         app:olSheet="true"
         app:olSheetCornerRadius="4dp"
         app:olSheetStrokeColor="@color/hint"
@@ -33,22 +34,42 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/search_bar" />
 
+    <TextView
+        android:id="@+id/trending_title"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        android:layout_margin="@dimen/standard_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/trending_now"
+        android:textSize="@dimen/text_size_medium"/>
+
     <com.interview.inshorts.base.views.MovieListView
         android:id="@+id/trending_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
         tools:text="Trending Now!"
-        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        app:layout_constraintTop_toBottomOf="@id/trending_title"
         tools:background="#440044"
         android:minHeight="50dp"
         android:maxHeight="50dp"/>
+
+    <TextView
+        android:id="@+id/now_playing_title"
+        app:layout_constraintTop_toBottomOf="@id/trending_view"
+        android:layout_margin="@dimen/standard_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/now_playing"
+        android:textSize="@dimen/text_size_medium"/>
 
     <com.interview.inshorts.base.views.MovieListView
         android:id="@+id/now_playing_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
         tools:text="Trending Now!"
-        app:layout_constraintTop_toBottomOf="@id/trending_view"
+        app:layout_constraintTop_toBottomOf="@id/now_playing_title"
         tools:background="@color/colorPrimary"
         android:minHeight="50dp"
         android:maxHeight="50dp"/>

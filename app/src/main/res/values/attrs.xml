@@ -28,4 +28,12 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="MovieList">
+        <attr name="listType" format="enum">
+            <enum name="grid" value="0"/>
+            <enum name="horizontal" value="1"/>
+            <enum name="vertical" value="2"/>
+        </attr>
+    </declare-styleable>
+
 </resources>

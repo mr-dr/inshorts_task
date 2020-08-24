@@ -54,7 +54,7 @@ public class MovieApiConfig {
         return description1 != null ? description1 : description2;
     }
 
-    // TODO move formatting helper/utils out of this class
+    // TODO move to MovieInfoHelper
     @Nullable
     public String getFormattedRating() { // can be moved out
         if (rating <= 0) return null;

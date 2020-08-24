@@ -23,11 +23,11 @@ public abstract class Movies implements Parcelable {
     @ColumnInfo(name = "poster_path")
     protected String posterPath;
 
-    @Ignore
     public Movies(int id, String title, String posterPath, String description, String rating, boolean isAdult) {
         this.id = id;
         this.isAdult = isAdult;
         this.title = title;
+        this.description = description;
         this.rating = rating;
         this.posterPath = posterPath;
     }

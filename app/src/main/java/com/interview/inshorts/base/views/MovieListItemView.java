@@ -12,7 +12,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.interview.inshorts.R;
 import com.interview.inshorts.base.data.Movies;
 import com.interview.inshorts.base.utils.BundleExtraKeys;
-import com.interview.inshorts.details.MovieDetailsActivity;
+import com.interview.inshorts.base.utils.MovieInfoHelper;
+import com.interview.inshorts.details.activity.MovieDetailsActivity;
 import com.interview.inshorts.network.Constants;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -46,7 +47,7 @@ class MovieListItemView extends ConstraintLayout implements View.OnClickListener
     public void  updateView(Movies itemConfig) {
         mConfig = itemConfig;
         String title = itemConfig.getTitle();
-        String imageUrl = getImageUrl(itemConfig.getPosterPath());
+        String imageUrl = MovieInfoHelper.getImageUrl(itemConfig.getPosterPath());
         Log.d("app", "loading itemConfig: " + title + ", " + imageUrl);
         Glide.with(this)
                 .load(imageUrl)
@@ -70,11 +71,5 @@ class MovieListItemView extends ConstraintLayout implements View.OnClickListener
         Intent intent = new Intent(getContext(), MovieDetailsActivity.class);
         intent.putExtra(BundleExtraKeys.MOVIE_CONFIG, mConfig);
         getContext().startActivity(intent);
-    }
-
-    // fixme move to helper/util class
-
-    private String getImageUrl(String posterPath) {
-        return Constants.POSTER_BASE_URL + posterPath;
     }
 }

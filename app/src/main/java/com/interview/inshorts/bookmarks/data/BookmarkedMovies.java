@@ -13,6 +13,10 @@ public class BookmarkedMovies extends Movies {
         super(id, title, posterPath, description, rating, isAdult);
     }
 
+    public BookmarkedMovies(Movies movie) {
+        super(movie.getId(), movie.getTitle(), movie.getPosterPath(), movie.getDescription(), movie.getRating(), movie.isAdult());
+    }
+
     public BookmarkedMovies(Parcel in) {
         super(in);
     }

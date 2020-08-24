@@ -7,4 +7,5 @@
     <color name="white">#fff</color>
     <color name="image_tv_bg">#88000000</color>
     <color name="progress_bg">#44000000</color>
+    <color name="red">#900</color>
 </resources>

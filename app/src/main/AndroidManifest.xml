@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".bookmarks.BookmarksActivity" />
         <activity android:name=".search.SearchActivity" />
-        <activity android:name=".details.MovieDetailsActivity" />
+        <activity android:name=".details.activity.MovieDetailsActivity" />
     </application>
 
 </manifest>

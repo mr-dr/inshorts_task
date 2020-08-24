@@ -1,5 +1,6 @@
 package com.interview.inshorts.base.data;
 
+import com.interview.inshorts.bookmarks.BookmarksDao;
 import com.interview.inshorts.bookmarks.data.BookmarkedMovies;
 import com.interview.inshorts.home.data.NowPlayingMovies;
 import com.interview.inshorts.home.data.NowPlayingMoviesDao;
@@ -15,4 +16,6 @@ public abstract class MoviesLocalDatabase extends RoomDatabase {
     public abstract TrendingMoviesDao trendingMoviesDao();
 
     public abstract NowPlayingMoviesDao nowPlayingMoviesDao();
+
+    public abstract BookmarksDao bookmarkedMoviesDao();
 }

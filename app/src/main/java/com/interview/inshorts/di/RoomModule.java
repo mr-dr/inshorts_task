@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.interview.inshorts.base.data.MoviesLocalDatabase;
 import com.interview.inshorts.base.vmFactory.HomeVmFactory;
+import com.interview.inshorts.bookmarks.BookmarksDao;
+import com.interview.inshorts.bookmarks.BookmarksRepo;
+import com.interview.inshorts.details.vm.MovieDetailsRepo;
 import com.interview.inshorts.home.data.HomeViewDataSource;
 import com.interview.inshorts.home.data.HomeViewLocalDataSource;
 import com.interview.inshorts.home.data.HomeViewRemoteDataSource;
@@ -64,6 +67,24 @@ public class RoomModule {
     @Provides
     NowPlayingMoviesDao getNowPlayingMoviesDao() {
         return database.nowPlayingMoviesDao();
+    }
+
+    @Singleton
+    @Provides
+    BookmarksDao getBookmarkedMoviesDao() {
+        return database.bookmarkedMoviesDao();
+    }
+
+    @Singleton
+    @Provides
+    BookmarksRepo getBookmarksRepository() {
+        return new BookmarksRepo();
+    }
+
+    @Singleton
+    @Provides
+    MovieDetailsRepo getMovieDetailsRepository() {
+        return new MovieDetailsRepo();
     }
 
 }

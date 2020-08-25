@@ -15,6 +15,8 @@ import com.interview.inshorts.home.data.NowPlayingMovies;
 import com.interview.inshorts.home.data.NowPlayingMoviesDao;
 import com.interview.inshorts.home.data.TrendingMovies;
 import com.interview.inshorts.home.data.TrendingMoviesDao;
+import com.interview.inshorts.network.Constants;
+import com.interview.inshorts.search.data.SearchRepo;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class RoomModule {
 
     public RoomModule(Application application) {
         database = Room.databaseBuilder(application.getApplicationContext(),
-                MoviesLocalDatabase.class, "Movies.db")
+                MoviesLocalDatabase.class, Constants.LOCAL_DB_NAME)
                 .build();
     }
 
@@ -85,6 +87,12 @@ public class RoomModule {
     @Provides
     MovieDetailsRepo getMovieDetailsRepository() {
         return new MovieDetailsRepo();
+    }
+
+    @Singleton
+    @Provides
+    SearchRepo getSearchRepository() {
+        return new SearchRepo();
     }
 
 }

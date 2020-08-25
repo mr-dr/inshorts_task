@@ -14,7 +14,7 @@ public interface TMDBService {
     // sample api call - https://api.themoviedb.org/3/movie/550?api_key=4e61d28fa5f8e4afdc0bcd33907d020f
     String BASE_URL = "https://api.themoviedb.org/";
 
-    @GET("3/search/keyword")
+    @GET("3/search/movie")
     Observable<SearchResponse> getKeywordSearch(
             @Query("query") String keyword, @Query("page") int page, @Query("api_key") String authKey);
 

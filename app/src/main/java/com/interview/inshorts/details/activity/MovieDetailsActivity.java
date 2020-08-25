@@ -14,12 +14,12 @@ import com.interview.inshorts.base.data.Movies;
 import com.interview.inshorts.base.utils.BundleExtraKeys;
 import com.interview.inshorts.base.utils.MovieInfoHelper;
 import com.interview.inshorts.details.vm.MovieDetailsViewModel;
+
 import androidx.lifecycle.ViewModelProvider;
 
 public class MovieDetailsActivity extends BaseActivity implements View.OnClickListener {
 
     private MovieDetailsViewModel mViewModel;
-    private int mMovieId = -1;
     private Movies mMovieConfig;
 
     private ImageView mPoster;
@@ -68,19 +68,18 @@ public class MovieDetailsActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void populateView() {
-        mMovieId = getIntent().getIntExtra(BundleExtraKeys.MOVIE_ID, -1);
         mMovieConfig = getIntent().getParcelableExtra(BundleExtraKeys.MOVIE_CONFIG);
-        if(mMovieConfig != null) {
+        if (mMovieConfig != null) {
             populateBookmarkView(mMovieConfig.getId());
             loadPage(mMovieConfig);
-        } else if (mMovieId > 0) {
-            populateBookmarkView(mMovieId);
-            mViewModel.populateMovieLiveData(mMovieId);
-            mViewModel.getMovieLiveData().observe(this, movieConfig1 -> loadPage(movieConfig1));
         } else {
-            Toast.makeText(this, getString(R.string.base_error), Toast.LENGTH_SHORT).show();
-            finish();
+            onError();
         }
+    }
+
+    private void onError() {
+        Toast.makeText(this, getString(R.string.base_error), Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private void loadPage(Movies movieConfig) {
@@ -99,7 +98,7 @@ public class MovieDetailsActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if(v == null) return;
+        if (v == null) return;
         int id = v.getId();
         switch (id) {
             case R.id.bookmark_tv:

@@ -42,7 +42,7 @@ public abstract class ApiRequest<T> implements Callback<T> {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
-        TMDBService service = retrofit.create(TMDBService.class);
+        TMDBService service = retrofit.create(TMDBService.class); // fixme - can be injected
 
         Observable<T> observable = getObservable(service);
         disposable = observable.subscribeOn(Schedulers.io())

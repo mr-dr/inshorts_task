@@ -3,7 +3,7 @@
     <string name="search_bar_text">Search for a movie...</string>
     <string name="trending_now">Trending Now...</string>
     <string name="now_playing">Now Playing...</string>
-    <string name="base_error">\"Something went wrong!\"</string>
+    <string name="base_error">Something went wrong!</string>
     <string name="add_bookmark">Add Bookmark</string>
     <string name="remove_bookmark">Remove Bookmark</string>
     <string name="bookmark_title">Your Bookmarks</string>

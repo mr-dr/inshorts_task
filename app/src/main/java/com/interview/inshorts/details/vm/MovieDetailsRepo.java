@@ -3,9 +3,7 @@ package com.interview.inshorts.details.vm;
 import com.interview.inshorts.AppController;
 import com.interview.inshorts.bookmarks.BookmarksDao;
 import com.interview.inshorts.bookmarks.data.BookmarkedMovies;
-
 import java.util.List;
-
 import javax.inject.Inject;
 import io.reactivex.Observable;
 

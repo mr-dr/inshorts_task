@@ -15,6 +15,7 @@ import com.interview.inshorts.home.data.HomeViewRemoteDataSource;
 import com.interview.inshorts.home.data.HomeViewRepo;
 import com.interview.inshorts.home.vm.HomeViewModel;
 import com.interview.inshorts.search.SearchActivity;
+import com.interview.inshorts.search.vm.SearchViewModel;
 
 import javax.inject.Singleton;
 
@@ -39,6 +40,8 @@ public interface ApplicationComponent {
 
     void inject(MovieDetailsViewModel movieDetailsViewModel);
     void inject(MovieDetailsRepo movieDetailsRepo);
+    void inject(SearchViewModel searchViewModel);
+
 //    void inject();
 
     Application application();

@@ -29,8 +29,6 @@ public class MovieApiConfig {
     @SerializedName("backdrop_path")
     private String poster2;
 
-    // TODO can add genre info as well
-
     public int getId() {
         return id;
     }
@@ -54,7 +52,6 @@ public class MovieApiConfig {
         return description1 != null ? description1 : description2;
     }
 
-    // TODO move to MovieInfoHelper
     @Nullable
     public String getFormattedRating() { // can be moved out
         if (rating <= 0) return null;

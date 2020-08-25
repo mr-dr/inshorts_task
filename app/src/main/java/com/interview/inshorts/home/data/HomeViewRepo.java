@@ -22,7 +22,6 @@ public class HomeViewRepo implements HomeViewDataSource<List<TrendingMovies>, Li
     @Inject HomeViewRemoteDataSource mRemoteDataSource;
 
     public HomeViewRepo() {
-        // fixme Appcontroller should only be called from android components
         AppController.getInstance().getApplicationComponent().inject(this);
         subscribeLocalDataSourceWithRemote();
     }
@@ -101,8 +100,6 @@ public class HomeViewRepo implements HomeViewDataSource<List<TrendingMovies>, Li
             }
         });
     }
-
-    // TODO move below functions to bg thread
 
     private List<TrendingMovies> convertApiConfigToTrendingConfig(@Nullable List<MovieApiConfig> apiResults) {
         List<TrendingMovies> list = new ArrayList<>();

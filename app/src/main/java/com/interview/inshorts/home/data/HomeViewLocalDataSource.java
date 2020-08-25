@@ -21,7 +21,6 @@ public class HomeViewLocalDataSource implements HomeViewDataSource<List<Trending
 
 
     public HomeViewLocalDataSource() {
-        // fixme Appcontroller should only be called from android components
         AppController.getInstance().getApplicationComponent().inject(this);
         trendingObservable = PublishSubject.create();
         nowPlayingObservable = PublishSubject.create();

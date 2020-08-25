@@ -39,7 +39,7 @@ public class SheetViewHelper {
                               float cornerRadius,
                               int bgColor,
                               int startColor,
-                              int midColor, // fixme doesn't consider mid color
+                              int midColor,
                               int endColor,
                               int gradientAngle,
                               int strokeColor,
@@ -56,7 +56,7 @@ public class SheetViewHelper {
             float cornerRadius,
             int bgColor,
             int startColor,
-            int midColor, // fixme doesn't consider mid color
+            int midColor,
             int endColor,
             int gradientAngle,
             int strokeColor,
